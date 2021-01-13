@@ -1,14 +1,29 @@
+DROP DATABASE IF EXISTS chat;
+
 CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE messages (
-  /* Describe your table here.*/
+/* Create other tables and define schemas for them here! */
+CREATE TABLE username (
+  userID INT AUTO_INCREMENT,
+  username VARCHAR(20) NOT NULL,
+  PRIMARY KEY (userID, username)
 );
 
-/* Create other tables and define schemas for them here! */
+CREATE TABLE roomname (
+  roomID INT AUTO_INCREMENT,
+  roomname VARCHAR(20) NOT NULL,
+  PRIMARY KEY (roomID, roomname)
+);
 
-
+CREATE TABLE messages (
+  messageID INT AUTO_INCREMENT,
+  messages VARCHAR(140) NOT NULL,
+  PRIMARY KEY (messageID),
+  userID INT,
+  roomID INT
+);
 
 
 /*  Execute this file from the command line by typing:
