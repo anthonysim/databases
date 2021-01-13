@@ -6,23 +6,25 @@ USE chat;
 
 /* Create other tables and define schemas for them here! */
 CREATE TABLE username (
-  userID INT AUTO_INCREMENT,
+  -- userID INT AUTO_INCREMENT,
   username VARCHAR(20) NOT NULL,
-  PRIMARY KEY (userID, username)
+  -- PRIMARY KEY (userID, username)
+  PRIMARY KEY (username)
 );
 
 CREATE TABLE roomname (
-  roomID INT AUTO_INCREMENT,
+  -- roomID INT AUTO_INCREMENT,
   roomname VARCHAR(20) NOT NULL,
-  PRIMARY KEY (roomID, roomname)
+  -- PRIMARY KEY (roomID, roomname)
+  PRIMARY KEY (roomname)
 );
 
 CREATE TABLE messages (
   messageID INT AUTO_INCREMENT,
   messages VARCHAR(140) NOT NULL,
   PRIMARY KEY (messageID),
-  userID INT,
-  roomID INT
+  -- userID INT,
+  -- roomID INT
 );
 
 
