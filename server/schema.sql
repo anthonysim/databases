@@ -22,6 +22,8 @@ CREATE TABLE roomname (
 CREATE TABLE messages (
   messageID INT AUTO_INCREMENT,
   messages VARCHAR(140) NOT NULL,
+  username VARCHAR(20) NOT NULL,
+  roomname VARCHAR(20) NOT NULL,
   PRIMARY KEY (messageID),
   -- userID INT,
   -- roomID INT
