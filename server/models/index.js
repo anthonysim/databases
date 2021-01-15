@@ -15,7 +15,7 @@ module.exports = {
     }, // a function which produces all the messages
 
     post: function (callback) {
-      let message = { messages: 'Javier is a cool guy', username: 'Javier', roomname: 'Lobby' };
+      let message = { messages: 'In mercy\'s name, three days is all I need.', username: 'Valjean', roomname: 'Hello' };
       db.query('INSERT INTO messages SET ?', message, (err, res) => {
         if (err) {
           throw err;
@@ -25,31 +25,30 @@ module.exports = {
         }
       }); // a function which can be used to insert a message into the database
     },
+  },
 
-
-    users: {
-      // Ditto as above.
-      get: function (callback) {
-        db.query('SELECT * FROM users', (err, rows) => {
-          if (err) {
-            throw err;
-          } else {
-            console.log(rows);
-            callback(null, rows);
-          }
-        });
-      },
-      post: function () {
-        let user = { username: 'Javier' };
-        db.query('INSERT INTO username SET ?', user, (err, res) => {
-          if (err) {
-            throw err;
-          } else {
-            console.log(res);
-            callback(null, res);
-          }
-        });
-      }
+  users: {
+    // Ditto as above.
+    get: function (callback) {
+      db.query('SELECT * FROM users', (err, rows) => {
+        if (err) {
+          throw err;
+        } else {
+          console.log(rows);
+          callback(null, rows);
+        }
+      });
+    },
+    post: function (callback) {
+      let user = { username: 'Javier' };
+      db.query('INSERT INTO users SET ?', user, (err, res) => {
+        if (err) {
+          throw err;
+        } else {
+          console.log(res);
+          callback(null, res);
+        }
+      });
     }
   }
 };

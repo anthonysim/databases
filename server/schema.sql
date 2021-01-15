@@ -5,17 +5,14 @@ CREATE DATABASE chat;
 USE chat;
 
 /* Create other tables and define schemas for them here! */
-CREATE TABLE username (
-  -- userID INT AUTO_INCREMENT,
+CREATE TABLE users (
+  id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(20) NOT NULL,
-  -- PRIMARY KEY (userID, username)
-  PRIMARY KEY (username)
+  PRIMARY KEY (ID)
 );
 
 CREATE TABLE roomname (
-  -- roomID INT AUTO_INCREMENT,
   roomname VARCHAR(20) NOT NULL,
-  -- PRIMARY KEY (roomID, roomname)
   PRIMARY KEY (roomname)
 );
 
@@ -24,9 +21,7 @@ CREATE TABLE messages (
   messages VARCHAR(140) NOT NULL,
   username VARCHAR(20) NOT NULL,
   roomname VARCHAR(20) NOT NULL,
-  PRIMARY KEY (messageID),
-  -- userID INT,
-  -- roomID INT
+  PRIMARY KEY (messageID)
 );
 
 
