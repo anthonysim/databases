@@ -4,50 +4,37 @@ module.exports = {
 
   messages: {
     get: function (callback) {
-      db.query('SELECT * FROM messages', (err, rows) => {
-        if (err) {
-          throw err;
-        } else {
-          console.log(rows);
-          callback(null, rows);
-        }
+      // fetch all messages
+      // text, username, roomname, id
+      var queryStr = 'select messages.id, messages.text, messages.roomname, users.username \
+                      from messages left outer join users on (messages.userid = users.id) \
+                      order by messages.id desc';
+      db.query(queryStr, function(err, results) {
+        callback(err, results);
       });
-    }, // a function which produces all the messages
-
-    post: function (callback) {
-      let message = { messages: 'In mercy\'s name, three days is all I need.', username: 'Valjean', roomname: 'Hello' };
-      db.query('INSERT INTO messages SET ?', message, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          console.log(res);
-          callback(null, res);
-        }
-      }); // a function which can be used to insert a message into the database
     },
+    post: function (params, callback) {
+      // create a message for a user id based on the given username
+      var queryStr = 'insert into messages(text, userid, roomname) \
+                      value (?, (select id from users where username = ? limit 1), ?)';
+      db.query(queryStr, params, function(err, results) {
+        callback(err, results);
+      });
+    }
   },
-
   users: {
-    // Ditto as above.
     get: function (callback) {
-      db.query('SELECT * FROM users', (err, rows) => {
-        if (err) {
-          throw err;
-        } else {
-          console.log(rows);
-          callback(null, rows);
-        }
+      // fetch all users
+      var queryStr = 'select * from users';
+      db.query(queryStr, function(err, results) {
+        callback(err, results);
       });
     },
-    post: function (callback) {
-      let user = { username: 'Javier' };
-      db.query('INSERT INTO users SET ?', user, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          console.log(res);
-          callback(null, res);
-        }
+    post: function (params, callback) {
+      // create a user
+      var queryStr = 'insert into users(username) values (?)';
+      db.query(queryStr, params, function(err, results) {
+        callback(err, results);
       });
     }
   }
